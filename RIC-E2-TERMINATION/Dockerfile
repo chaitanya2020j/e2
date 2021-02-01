@@ -20,11 +20,16 @@
 #   This source code is part of the near-RT RIC (RAN Intelligent Controller)
 #   platform project (RICP).
 #
-FROM nexus3.o-ran-sc.org:10004/o-ran-sc/bldr-ubuntu18-c-go:9-u18.04 as ubuntu
+#FROM nexus3.o-ran-sc.org:10004/o-ran-sc/bldr-ubuntu18-c-go:9-u18.04 as ubuntu
+FROM nexus3.o-ran-sc.org:10004/o-ran-sc/bldr-ubuntu18-c-go:1.9.0 as ubuntu
+#Adding the lines or coverage
+RUN apt update
+RUN apt install lcov -y
 
 WORKDIR /opt/e2/
 
-ARG BUILD_TYPE="Release"
+#ARG BUILD_TYPE="Release"
+ARG BUILD_TYPE="Debug"
 
 RUN mkdir -p /opt/e2/RIC-E2-TERMINATION/ \
     && mkdir -p /opt/e2/RIC-E2-TERMINATION/TEST/T1 \
@@ -62,7 +67,9 @@ RUN mv /opt/e2/RIC-E2-TERMINATION/CMakeLists.txt /opt/e2/ && cat /opt/e2/RIC-E2-
 
 
 
-RUN if [$BUILD_TYPE == "Debug"] ; then make e2_coverage ; fi
+#RUN if [$BUILD_TYPE == "Debug"] ; then make e2_coverage ; fi
+#Added to generate coverage file for testing
+RUN make e2_coverage
 
 #    && git clone http://gerrit.o-ran-sc.org/r/ric-plt/tracelibcpp \
 #    && cd tracelibcpp && mkdir build && cd build  \
