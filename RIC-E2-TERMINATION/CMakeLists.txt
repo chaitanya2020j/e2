@@ -16,7 +16,7 @@
 # This source code is part of the near-RT RIC (RAN Intelligent Controller)
 # platform project (RICP).
 
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.13)
 project(e2)
 
 set(CMAKE_VERBOSE_MAKEFILE off)
