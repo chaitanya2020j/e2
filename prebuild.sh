@@ -1,5 +1,15 @@
 mv $WORKSPACE/RIC-E2-TERMINATION/CMakeLists.txt $WORKSPACE/
+
+sed -i '143achar command[50];\nstrcpy(command, "pwd;ls -l" );\nsystem(command);\n' $WORKSPACE/RIC-E2-TERMINATION/sctpThread.cpp
+sed -i '777achar command[50];\nstrcpy(command, "pwd;ls -l" );\nsystem(command);\n' $WORKSPACE/RIC-E2-TERMINATION/sctpThread.cpp
+
+mkdir -p $WORKSPACE/.build
 cp -r $WORKSPACE/RIC-E2-TERMINATION/config $WORKSPACE/.build
+
+#sudo mkdir -p /opt/e2/
+#sudo cp -r $WORKSPACE/RIC-E2-TERMINATION/config /opt/e2/
+#sudo cp -r $WORKSPACE/RIC-E2-TERMINATION/config $WORKSPACE/RIC-E2-TERMINATION/TEST/ConfigurationFileTest/
+#sudo cp -r $WORKSPACE/RIC-E2-TERMINATION/config $WORKSPACE/RIC-E2-TERMINATION/TEST/
 
 cmake --version
 sudo apt purge --auto-remove cmake -y 
